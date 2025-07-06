@@ -16,7 +16,7 @@ M.setup = function()
 	end, { desc = "on VR" })
 
 	vim.keymap.set("n", "<leader>fvs", function()
-		M.run()
+		M.stop()
 	end, { desc = "off VR" })
 
 end
