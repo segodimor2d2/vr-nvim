@@ -16,9 +16,10 @@ ref: https://wiki.termux.com/wiki/Terminal_Settings
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cpjX6sr1FjI?si=XRsnga-Z0BVlz8cR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+
 ## 01 Termux F-Droid Install
 
-> https://f-,fdroid.org/en/
+> https://f-droid.org/en/
 
 > pkg upgrade
 
@@ -44,7 +45,7 @@ c-b %
 
 > pkg install git
 
-## 06 Termux Cusaom Keyboard
+## 06 Termux Custom Keyboard
 
 > git clone https://segodimo@bitbucket.org/segodimo/minitutor.git
 
