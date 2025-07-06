@@ -5,7 +5,8 @@ M.run = function()
   vim.opt.relativenumber = false
   vim.opt.number = false
   vim.cmd('set numberwidth=20')
-  vim.cmd("term") -- abra terminal
+  -- vim.cmd("term") -- abra terminal
+  vim.cmd("vsplit") -- split da tela
 end
 
 
@@ -15,6 +16,7 @@ M.stop = function()
   vim.opt.relativenumber = true
   vim.cmd('set numberwidth=4')
   -- vim.cmd("term") -- abra terminal
+  vim.cmd("q")  -- ou vim.cmd("quit")
 end
 
 M.setup = function()
