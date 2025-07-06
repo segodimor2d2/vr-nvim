@@ -5,6 +5,7 @@ M.run = function()
   vim.opt.relativenumber = false
   vim.opt.number = false
   vim.cmd('set numberwidth=20')
+  vim.cmd("term") -- abra terminal
 end
 
 
@@ -13,6 +14,7 @@ M.stop = function()
   vim.opt.number = true
   vim.opt.relativenumber = true
   vim.cmd('set numberwidth=4')
+  -- vim.cmd("term") -- abra terminal
 end
 
 M.setup = function()
