@@ -13,7 +13,6 @@ M.run = function()
 end
 
 M.stop = function()
-  print("VR stop")
   vim.opt.number = true
   vim.opt.relativenumber = true
   vim.cmd('set numberwidth=4')
@@ -28,11 +27,11 @@ M.setup = function()
 
 	vim.keymap.set("n", "<leader>fvv", function()
 		M.run()
-	end, { desc = "on VR" })
+	end, { desc = "VrOn" })
 
 	vim.keymap.set("n", "<leader>fvs", function()
 		M.stop()
-	end, { desc = "off VR" })
+	end, { desc = "VrOff" })
 
 end
 
