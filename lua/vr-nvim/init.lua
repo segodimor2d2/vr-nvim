@@ -7,9 +7,9 @@ M.sleep = function(ms, callback)
 end
 
 M.run = function()
-  vim.opt.relativenumber = false
+  -- vim.opt.relativenumber = false
   -- vim.opt.number = false
-  vim.cmd('set numberwidth=20')
+  -- vim.cmd('set numberwidth=20')
   vim.cmd("term") -- abra terminal
   vim.cmd("vsplit") -- split da tela
   vim.cmd("windo diffthis") -- compare os lados
@@ -24,8 +24,8 @@ end
 
 M.stop = function()
   -- vim.opt.number = true
-  vim.opt.relativenumber = true
-  vim.cmd('set numberwidth=4')
+  -- vim.opt.relativenumber = true
+  -- vim.cmd('set numberwidth=4')
   vim.cmd("windo diffoff") -- off compare
   vim.cmd("stopinsert")
   vim.cmd("bd!")  -- 'bd' = 'bdelete', e o '!' força o fechamento
