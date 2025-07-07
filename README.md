@@ -7,6 +7,44 @@ FloatermNew
 
 voldikss/vim-floaterm
 
+---
+
+```lua
+lua vim.cmd("FloatermNew --height=0.6 --width=0.6 --wintype=float --position=center")
+lua vim.cmd("FloatermSend nvim")
+lua vim.opt.relativenumber = false
+lua vim.opt.number = false
+lua vim.cmd('set numberwidth=20')
+lua vim.cmd("term") -- abra terminal
+lua vim.cmd("vsplit") -- split da tela
+lua vim.cmd("windo diffthis") -- compare os lados
+lua vim.cmd("wincmd w") -- foco para a primeira janela
+lua vim.cmd("startinsert") -- modo insert
+lua vim.cmd("FloatermSend tmux")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
 
 
 # Tutor Termux
