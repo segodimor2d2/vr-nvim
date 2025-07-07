@@ -7,7 +7,7 @@ M.sleep = function(ms, callback)
 end
 
 M.run = function()
-  print("opening!")
+  print("tsts!")
   M.sleep(1000, function()
     vim.opt.relativenumber = false
     -- vim.opt.number = false
@@ -26,16 +26,16 @@ M.run = function()
 end
 
 M.stop = function()
-  print("closing!")
-    M.sleep(1000, function()
+  print("tsts!")
+  M.sleep(1000, function()
     -- vim.opt.number = true
     vim.opt.relativenumber = true
     vim.cmd('set numberwidth=4')
     vim.cmd("windo diffoff") -- off compare
     vim.cmd("stopinsert")
-    vim.cmd("q") -- ou vim.cmd("quit")
+    vim.cmd("bd!")  -- 'bd' = 'bdelete', e o '!' força o fechamento
   end)
-  vim.cmd("bd!")  -- 'bd' = 'bdelete', e o '!' força o fechamento
+  vim.cmd("bd!")
   print("VR is Off!")
 end
 
