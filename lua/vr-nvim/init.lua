@@ -1,6 +1,6 @@
 local M = {}
 
-function sleep(ms, callback)
+M.sleep = function(ms, callback)
   vim.defer_fn(function()
     callback()
   end, ms)
@@ -8,7 +8,7 @@ end
 
 M.run = function()
   print("oi!")
-  sleep(5000, function()
+  M.sleep(5000, function()
   vim.opt.relativenumber = false
   vim.opt.number = false
   vim.cmd('set numberwidth=20')
