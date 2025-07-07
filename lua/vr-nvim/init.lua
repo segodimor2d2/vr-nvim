@@ -14,22 +14,22 @@ M.run = function()
     vim.cmd('set numberwidth=20')
     vim.cmd("term") -- abra terminal
     vim.cmd("vsplit") -- split da tela
-    vim.cmd("wincmd w") -- foco para a primeira janela
     vim.cmd("windo diffthis") -- compare os lados
+    vim.cmd("wincmd w") -- foco para a primeira janela
     vim.cmd("startinsert") -- modo insert
   end)
   print("VR is On!")
-  vim.cmd("FloatermNew --height=0.6 --width=0.6 --wintype=float --position=center")
-  vim.cmd("FloatermSend nvim")
-  vim.cmd("FloatermSend :NVRon")
-  vim.cmd("FloatermSend tmux")
+  -- vim.cmd("FloatermNew --height=0.6 --width=0.6 --wintype=float --position=center")
+  -- vim.cmd("FloatermSend nvim")
+  -- vim.cmd("FloatermSend :NVRon")
+  -- vim.cmd("FloatermSend tmux")
 end
 
 M.stop = function()
-  vim.cmd("windo diffoff") -- off compare
   vim.opt.number = true
   vim.opt.relativenumber = true
   vim.cmd('set numberwidth=4')
+  vim.cmd("windo diffoff") -- off compare
   vim.cmd("stopinsert")
   vim.cmd("q")  -- ou vim.cmd("quit")
   print("VR is Off!")
