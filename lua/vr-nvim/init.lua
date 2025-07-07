@@ -9,15 +9,16 @@ end
 M.run = function()
   print("oi!")
   M.sleep(5000, function()
-  vim.opt.relativenumber = false
-  vim.opt.number = false
-  vim.cmd('set numberwidth=20')
-  vim.cmd("term") -- abra terminal
-  vim.cmd("vsplit") -- split da tela
-  vim.cmd("wincmd w") -- foco para a primeira janela
-  vim.cmd("windo diffthis") -- compare os lados
-  vim.cmd("startinsert") -- modo insert
-  print("VR is On!")
+    vim.opt.relativenumber = false
+    vim.opt.number = false
+    vim.cmd('set numberwidth=20')
+    vim.cmd("term") -- abra terminal
+    vim.cmd("vsplit") -- split da tela
+    vim.cmd("wincmd w") -- foco para a primeira janela
+    vim.cmd("windo diffthis") -- compare os lados
+    vim.cmd("startinsert") -- modo insert
+    print("VR is On!")
+  end)
 end
 
 M.stop = function()
