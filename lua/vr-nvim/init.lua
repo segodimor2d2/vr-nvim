@@ -31,7 +31,8 @@ M.stop = function()
   vim.cmd('set numberwidth=4')
   vim.cmd("windo diffoff") -- off compare
   vim.cmd("stopinsert")
-  vim.cmd("q")  -- ou vim.cmd("quit")
+  vim.cmd("q") -- ou vim.cmd("quit")
+  vim.cmd("q")
   print("VR is Off!")
 end
 
