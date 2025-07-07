@@ -7,7 +7,6 @@ M.sleep = function(ms, callback)
 end
 
 M.run = function()
-  print("tsts!")
   vim.opt.relativenumber = false
   -- vim.opt.number = false
   vim.cmd('set numberwidth=20')
@@ -24,26 +23,22 @@ M.run = function()
 end
 
 M.stop = function()
-  print("tsts!")
   -- vim.opt.number = true
   vim.opt.relativenumber = true
   vim.cmd('set numberwidth=4')
   vim.cmd("windo diffoff") -- off compare
   vim.cmd("stopinsert")
-  vim.cmd("bd")  -- 'bd' = 'bdelete', e o '!' força o fechamento
+  vim.cmd("bd!")  -- 'bd' = 'bdelete', e o '!' força o fechamento
   print("VR is Off!")
 end
 
 M.setup = function()
-
 	vim.keymap.set("n", "<leader>fvv", function()
 		M.run()
 	end, { desc = "VrOn" })
-
 	vim.keymap.set("n", "<leader>fvs", function()
 		M.stop()
 	end, { desc = "VrOff" })
-
 end
 
 return M
