@@ -8,7 +8,7 @@ end
 
 M.run = function()
   print("oi!")
-  M.sleep(5000, function()
+  M.sleep(1000, function()
     vim.opt.relativenumber = false
     vim.opt.number = false
     vim.cmd('set numberwidth=20')
@@ -17,13 +17,16 @@ M.run = function()
     vim.cmd("wincmd w") -- foco para a primeira janela
     vim.cmd("windo diffthis") -- compare os lados
     vim.cmd("startinsert") -- modo insert
-    print("VR is On!")
   end)
+  print("VR is On!")
+  vim.cmd("FloatermNew --height=0.6 --width=0.6 --wintype=float --position=center")
+  vim.cmd("FloatermSend nvim")
+  vim.cmd("FloatermSend :NVRon")
+  vim.cmd("FloatermSend tmux")
 end
 
 M.stop = function()
   vim.cmd("windo diffoff") -- off compare
-  vim.cmd("q")  -- ou vim.cmd("quit")
   vim.opt.number = true
   vim.opt.relativenumber = true
   vim.cmd('set numberwidth=4')

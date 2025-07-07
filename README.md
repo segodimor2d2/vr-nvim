@@ -3,6 +3,12 @@
 Plugin for neovim to use VR 
 
 
+FloatermNew
+
+voldikss/vim-floaterm
+
+
+
 # Tutor Termux
 
 repo: https://bitbucket.org/segodimo/minitutor/src/main/
