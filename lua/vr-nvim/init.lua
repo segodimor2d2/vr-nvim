@@ -28,6 +28,7 @@ M.stop = function()
   vim.opt.relativenumber = true
   vim.cmd('set numberwidth=4')
   vim.cmd("stopinsert")
+  vim.cmd("q")  -- ou vim.cmd("quit")
   print("VR is Off!")
 end
 
