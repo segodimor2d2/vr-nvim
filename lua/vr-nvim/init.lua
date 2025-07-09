@@ -96,10 +96,15 @@ M.floatView = function()
   vim.api.nvim_win_set_buf(win_right, buf)
 
   -- Sincroniza visualmente
+  -- vim.cmd("windo set scrollbind")
+  -- vim.cmd("windo set cursorbind")
+  -- vim.cmd("windo set signcolumn=yes")
   vim.cmd("windo set scrollbind")
   vim.cmd("windo set cursorbind")
-  -- vim.cmd("windo set cursorline")
-  vim.cmd("windo set signcolumn=yes")
+  vim.cmd("windo normal! G")      -- Força ir para o final do buffer
+  vim.cmd("windo normal! zz")     -- Centraliza a visão do cursor
+  vim.cmd("redraw!")              -- Redesenha a tela (útil em Termux)
+
 
   -- Volta pro terminal à esquerda
   vim.cmd("wincmd h")
