@@ -49,20 +49,14 @@ local function run_log_writer(script_path)
   end)
 end
 
-
-
 function M.run_floating_terminal()
-  --
-  -- Cria novo buffer
-  local buf = vim.api.nvim_create_buf(false, true) -- [listed = false, scratch = true]
+  local buf = vim.api.nvim_create_buf(false, true)
 
-  -- Tamanho e posição
   local width = math.floor(vim.o.columns * 0.6)
   local height = math.floor(vim.o.lines * 0.6)
   local row = math.floor((vim.o.lines - height) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
 
-  -- Define opções da janela
   local opts = {
     relative = "editor",
     width = width,
@@ -73,16 +67,18 @@ function M.run_floating_terminal()
     border = "rounded",
   }
 
-  -- Abre a janela flutuante
-  local win = vim.api.nvim_open_win(buf, true, opts)
+  vim.api.nvim_open_win(buf, true, opts)
 
-  -- Inicia o terminal nesse buffer
-  -- vim.fn.termopen(os.getenv("SHELL") or "sh")
-  -- vim.fn.termopen("nvim")
-  vim.fn.termopen((os.getenv("SHELL") or "sh") .. " -c nvim")
+  -- Abre terminal com shell
+  local term_job_id = vim.fn.termopen(os.getenv("SHELL") or "sh")
 
-  -- Entra no modo de inserção
+  -- Modo de inserção
   vim.cmd("startinsert")
+
+  -- Aguarda 500ms e executa 'nvim' no terminal
+  vim.defer_fn(function()
+    vim.fn.chansend(term_job_id, "nvim\n")
+  end, 3000)
 end
 
 M.floatView = function()
