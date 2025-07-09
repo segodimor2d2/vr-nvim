@@ -68,7 +68,7 @@ end
 function M.run_floating_terminal()
   local buf = vim.api.nvim_create_buf(false, true)
 
-  local width = math.floor(vim.o.columns * 0.6)
+  local width = math.floor(vim.o.columns * 0.4)
   local height = math.floor(vim.o.lines * 0.6)
   local row = math.floor((vim.o.lines - height) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
@@ -94,13 +94,10 @@ function M.run_floating_terminal()
   -- Aguarda 500ms e executa 'nvim' no terminal
   vim.defer_fn(function()
     vim.fn.chansend(term_job_id, "nvim\n")
-    -- vim.fn.chansend(term_job_id, "nvim --cmd ',es")
   end, 3000)
 
   vim.defer_fn(function()
     vim.fn.chansend(term_job_id, ",es")
-    -- vim.fn.chansend(term_job_id, ":lua require('vr-nvim').style()<CR>")
-    -- vim.fn.chansend(term_job_id, "nvim --cmd 'lua require(\"vr-nvim\").style()'\n")
   end, 4000)
 
 end
@@ -122,8 +119,6 @@ M.floatView = function()
   -- Sincroniza visualmente
   vim.cmd("windo set scrollbind")
   vim.cmd("windo set cursorbind")
-  vim.cmd("windo set cursorline")
-  vim.cmd("windo set signcolumn=yes")
   vim.cmd("windo normal! G")
   vim.cmd("windo normal! zz")
   vim.cmd("redraw!")
