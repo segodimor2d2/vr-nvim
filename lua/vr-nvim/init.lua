@@ -77,7 +77,9 @@ function M.run_floating_terminal()
   local win = vim.api.nvim_open_win(buf, true, opts)
 
   -- Inicia o terminal nesse buffer
-  vim.fn.termopen(os.getenv("SHELL") or "sh")
+  -- vim.fn.termopen(os.getenv("SHELL") or "sh")
+  -- vim.fn.termopen("nvim")
+  vim.fn.termopen((os.getenv("SHELL") or "sh") .. " -c nvim")
 
   -- Entra no modo de inserção
   vim.cmd("startinsert")
@@ -100,7 +102,7 @@ M.floatView = function()
   -- Sincroniza visualmente
   vim.cmd("windo set scrollbind")
   vim.cmd("windo set cursorbind")
-  vim.cmd("windo set cursorline")
+  -- vim.cmd("windo set cursorline")
   vim.cmd("windo set signcolumn=yes")
 
   -- Volta pro terminal à esquerda
