@@ -96,15 +96,11 @@ M.floatView = function()
   vim.api.nvim_win_set_buf(win_right, buf)
 
   -- Sincroniza visualmente
-  -- vim.cmd("windo set scrollbind")
-  -- vim.cmd("windo set cursorbind")
-  -- vim.cmd("windo set signcolumn=yes")
   vim.cmd("windo set scrollbind")
   vim.cmd("windo set cursorbind")
-  vim.cmd("windo normal! G")      -- Força ir para o final do buffer
-  vim.cmd("windo normal! zz")     -- Centraliza a visão do cursor
-  vim.cmd("redraw!")              -- Redesenha a tela (útil em Termux)
-
+  vim.cmd("windo normal! G")
+  vim.cmd("windo normal! zz")
+  vim.cmd("redraw!")
 
   -- Volta pro terminal à esquerda
   vim.cmd("wincmd h")
@@ -113,6 +109,13 @@ M.floatView = function()
 end
 
 
+M.style = function()
+  vim.opt.guicursor = "n-v-c:block-Cursor"
+  -- vim.cmd("highlight Cursor guibg=red guifg=white")
+  vim.cmd("highlight Cursor guibg=#2e2e2e guifg=#2e2e2e") -- cinza escuro
+  -- vim.cmd("highlight FakeCursor guibg=yellow guifg=black")
+  vim.cmd("redraw")  -- força aplicação visual imediata
+end
 
 
 M.stop = function()
@@ -130,6 +133,10 @@ M.stop = function()
   -- Remove variáveis
   log_buf = nil
 
+  -- (Opcional) Restaurar guicursor padrão
+  vim.opt.guicursor = "n-v-c:block"
+  vim.cmd("highlight Cursor guibg=NONE guifg=NONE")
+
   print("🔴 VR OFF: terminal e log encerrados")
 end
 
@@ -137,6 +144,7 @@ M.setup = function()
   vim.keymap.set("n", "<leader>ee", M.run_floating_terminal, { desc = "VR On" })
   vim.keymap.set("n", "<leader>er", M.floatView, { desc = "VR FloatView (Lua)" })
   vim.keymap.set("n", "<leader>ew", M.stop, { desc = "VR FloatView Off" })
+  vim.keymap.set("n", "<leader>es", M.style, { desc = "VR Style" })
 end
 
 return M
