@@ -7,6 +7,47 @@ FloatermNew
 
 voldikss/vim-floaterm
 
+
+
+---
+```lua
+
+-- listar todos os plugins
+
+:lua for k, _ in pairs(require("lazy.core.config").plugins) do print(k) end
+
+-- aqui so esta executando comandos de teclado no nvim
+vim.fn.chansend(term_job_id, "nvim\n")
+vim.fn.chansend(term_job_id, ",es")
+vim.fn.chansend(term_job_id, ":lua require('vr-nvim').style()<CR>")
+-- no funciona para mi, Use o comando nvim com o argumento --cmd para executar um comando logo na inicialização do nvim dentro do terminal.
+vim.fn.chansend(term_job_id, "nvim --cmd 'lua require(\"vr-nvim\").style()'\n")
+
+
+
+
+
+
+
+
+
+```
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 ```lua
 lua vim.cmd("FloatermNew --height=0.6 --width=0.6 --wintype=float --position=center")

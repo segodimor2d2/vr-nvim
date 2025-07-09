@@ -49,6 +49,22 @@ local function run_log_writer(script_path)
   end)
 end
 
+M.style = function()
+  local is_loaded = package.loaded["lualine"]
+
+  if is_loaded then
+    package.loaded["lualine"] = nil       -- descarrega o módulo
+    vim.opt.laststatus = 0                -- oculta statusline
+    vim.cmd("redrawstatus!")
+    -- print("⛔ Lualine desativado (visual)")
+  else
+    require("lazy").load({ plugins = { "nvim-lualine/lualine.nvim" } })
+    vim.opt.laststatus = 3                -- exibe statusline
+    vim.cmd("redrawstatus!")
+    -- print("✅ Lualine ativado")
+  end
+end
+
 function M.run_floating_terminal()
   local buf = vim.api.nvim_create_buf(false, true)
 
@@ -78,7 +94,15 @@ function M.run_floating_terminal()
   -- Aguarda 500ms e executa 'nvim' no terminal
   vim.defer_fn(function()
     vim.fn.chansend(term_job_id, "nvim\n")
+    -- vim.fn.chansend(term_job_id, "nvim --cmd ',es")
   end, 3000)
+
+  vim.defer_fn(function()
+    vim.fn.chansend(term_job_id, ",es")
+    -- vim.fn.chansend(term_job_id, ":lua require('vr-nvim').style()<CR>")
+    -- vim.fn.chansend(term_job_id, "nvim --cmd 'lua require(\"vr-nvim\").style()'\n")
+  end, 4000)
+
 end
 
 M.floatView = function()
@@ -98,6 +122,8 @@ M.floatView = function()
   -- Sincroniza visualmente
   vim.cmd("windo set scrollbind")
   vim.cmd("windo set cursorbind")
+  vim.cmd("windo set cursorline")
+  vim.cmd("windo set signcolumn=yes")
   vim.cmd("windo normal! G")
   vim.cmd("windo normal! zz")
   vim.cmd("redraw!")
@@ -105,17 +131,10 @@ M.floatView = function()
   -- Volta pro terminal à esquerda
   vim.cmd("wincmd h")
 
-  print("🟢 VR duplicado: mesmo terminal nos dois lados!")
+  -- print("🟢 VR duplicado: mesmo terminal nos dois lados!")
 end
 
 
-M.style = function()
-  vim.opt.guicursor = "n-v-c:block-Cursor"
-  -- vim.cmd("highlight Cursor guibg=red guifg=white")
-  vim.cmd("highlight Cursor guibg=#2e2e2e guifg=#2e2e2e") -- cinza escuro
-  -- vim.cmd("highlight FakeCursor guibg=yellow guifg=black")
-  vim.cmd("redraw")  -- força aplicação visual imediata
-end
 
 
 M.stop = function()
@@ -137,7 +156,7 @@ M.stop = function()
   vim.opt.guicursor = "n-v-c:block"
   vim.cmd("highlight Cursor guibg=NONE guifg=NONE")
 
-  print("🔴 VR OFF: terminal e log encerrados")
+  -- print("🔴 VR OFF: terminal e log encerrados")
 end
 
 M.setup = function()
