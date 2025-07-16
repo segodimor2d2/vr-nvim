@@ -68,7 +68,7 @@ end
 function M.run_floating_terminal()
   local buf = vim.api.nvim_create_buf(false, true)
 
-  local width = math.floor(vim.o.columns * 0.4)
+  local width = math.floor(vim.o.columns * 0.5)
   local height = math.floor(vim.o.lines * 0.6)
   local row = math.floor((vim.o.lines - height) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
@@ -100,6 +100,13 @@ function M.run_floating_terminal()
     vim.fn.chansend(term_job_id, ",es")
   end, 4000)
 
+  vim.defer_fn(function()
+    vim.fn.chansend(term_job_id, ",er")
+  end, 6000)
+
+  vim.defer_fn(function()
+    vim.fn.chansend(term_job_id, "ii\n")
+  end, 7000)
 end
 
 M.floatView = function()
@@ -151,6 +158,7 @@ M.stop = function()
   vim.opt.guicursor = "n-v-c:block"
   vim.cmd("highlight Cursor guibg=NONE guifg=NONE")
 
+  -- vim.cmd("windo ,q")
   -- print("🔴 VR OFF: terminal e log encerrados")
 end
 
