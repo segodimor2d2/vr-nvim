@@ -100,13 +100,13 @@ function M.run_floating_terminal()
     vim.fn.chansend(term_job_id, ",es")
   end, 4000)
 
-  vim.defer_fn(function()
-    vim.fn.chansend(term_job_id, ",er")
-  end, 6000)
-
-  vim.defer_fn(function()
-    vim.fn.chansend(term_job_id, "ii\n")
-  end, 7000)
+  -- vim.defer_fn(function()
+  --   vim.fn.chansend(term_job_id, ",er")
+  -- end, 6000)
+  --
+  -- vim.defer_fn(function()
+  --   vim.fn.chansend(term_job_id, "ii\n")
+  -- end, 7000)
 end
 
 M.floatView = function()
