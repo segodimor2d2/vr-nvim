@@ -49,6 +49,10 @@ local function run_log_writer(script_path)
   end)
 end
 
+M.stylecursor = function()
+  vim.cmd('set numberwidth=8')
+end
+
 M.style = function()
   local is_loaded = package.loaded["lualine"]
 
@@ -100,13 +104,13 @@ function M.run_floating_terminal()
     vim.fn.chansend(term_job_id, ",es")
   end, 4000)
 
-  -- vim.defer_fn(function()
-  --   vim.fn.chansend(term_job_id, ",er")
-  -- end, 6000)
-  --
-  -- vim.defer_fn(function()
-  --   vim.fn.chansend(term_job_id, "ii\n")
-  -- end, 7000)
+  vim.defer_fn(function()
+    vim.fn.chansend(term_job_id, ",er")
+  end, 6000)
+
+  vim.defer_fn(function()
+    vim.fn.chansend(term_job_id, "ii\n")
+  end, 7000)
 end
 
 M.floatView = function()
@@ -167,6 +171,7 @@ M.setup = function()
   vim.keymap.set("n", "<leader>er", M.floatView, { desc = "VR FloatView (Lua)" })
   vim.keymap.set("n", "<leader>ew", M.stop, { desc = "VR FloatView Off" })
   vim.keymap.set("n", "<leader>es", M.style, { desc = "VR Style" })
+  vim.keymap.set("n", "<leader>ed", M.stylecursor, { desc = "VR Cursor" })
 end
 
 return M
