@@ -27,6 +27,9 @@ vim.fn.chansend(term_job_id, "nvim --cmd 'lua require(\"vr-nvim\").style()'\n")
 
 
 
+set termguicolors
+set guicursor=n-v-c:block
+highlight Cursor guifg=white guibg=red
 
 
 
